@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{amsmath}    % For math symbols and formatting
+\usepackage{geometry}   % To adjust page margins
+\usepackage{fancyhdr}   % For header and footer customization
+
+% Page layout
+\geometry{a4paper, margin=1in}
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Haskell Notes}
+\rhead{Class Notes}
+\cfoot{\thepage}
+
+% Title and Author
+\title{\textbf{Haskell Notes}}
+\author{Mauro Arcidiacono}
+\date{November -- December 2024}
+
+\begin{document}
+
+\maketitle
+
+\section*{Equivalence Relation}
+
+A relation $R \subseteq S \times S$ is an \textbf{equivalence relation} whenever, for $s, t, u \in S$:
+\begin{itemize}
+    \item $R$ is \textbf{reflexive}, i.e., $(s, s) \in R$;
+    \item $R$ is \textbf{symmetric}, i.e., if $(s, t) \in R$, then $(t, s) \in R$;
+    \item $R$ is \textbf{transitive}, i.e., if $(s, t) \in R$ and $(t, u) \in R$, then $(s, u) \in R$.
+\end{itemize}
+
+This definition applies to various contexts in mathematics and computer science. Equivalence relations are useful in defining partitions of sets and modeling relationships like equality, congruence, or similarity.
+
+\end{document}
