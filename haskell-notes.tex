@@ -1,7 +1,9 @@
 \documentclass{article}
 \usepackage{amsmath}    % For math symbols and formatting
+\usepackage{amssymb}    % For symbols like \twoheadrightarrow
 \usepackage{geometry}   % To adjust page margins
 \usepackage{fancyhdr}   % For header and footer customization
+\usepackage{tikz}       % For drawing diagrams
 
 % Page layout
 \geometry{a4paper, margin=1in}
@@ -32,8 +34,7 @@ A relation $R \subseteq S \times S$ is an \textbf{equivalence relation} whenever
 \end{itemize}
 
 This definition applies to various contexts in mathematics and computer science. Equivalence relations are useful in defining partitions of sets and modeling relationships like equality, congruence, or similarity.
-\\
-\\
+
 \textbf{Define the Renaming} $[y/x]$, \textbf{in the most general way:}
 \begin{itemize}
     \item regardless of the free/bound/binding position,
@@ -120,5 +121,41 @@ section*{$\beta$-Equivalence and Normal Forms}
 \]
 
 \textit{... these are different reduction strategies!}
+
+\section*{Church-Rosser Theorem and Confluence}
+
+Assume that this multi-step reduction exists, $h > 1$, so that $M =_\beta M'$:
+\[
+M = M_0' \to_\beta M_1' \to_\beta \cdots \to_\beta M_h' = M'
+\]
+
+Church-Rosser theorem then asserts that there is a common reduct $N$ for $M$ and $M'$ that can be reached (with $\beta$-reductions):
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.2\textwidth]{img/CR_theorem_diagram_0.jpg} % Adjust the width as needed
+    \caption{Church Rosser Theorem - Confluence Example 1}
+    \label{fig:cr-diagram-1}
+\end{figure}
+
+\subsection*{Key Question}
+What happens when $M'$ is \emph{a} normal form?
+    
+    ... and when both $M'$ and $N$ are normal forms?
+    
+This is about \emph{THE} normal form: if one exists, it is unique.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/CR_theorem_diagram_1.jpg} % Adjust the width as needed
+    \caption{Church Rosser Theorem - Confluence Example 2}
+    \label{fig:cr-diagram-2}
+\end{figure}
+
+\subsection*{Theorem}
+\textbf{Church Rosser Theorem:} For any two $\lambda$-terms $M$ and $N$, $M =_\beta N$ if and only if there is some $\lambda$-term $P$ such that:
+\[
+M \twoheadrightarrow_\beta^* P \quad \text{and} \quad N \xrightarrow{\beta^*} P
+\]
 
 \end{document}
