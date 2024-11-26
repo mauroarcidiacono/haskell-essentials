@@ -51,6 +51,7 @@ survey = do
       then do
         additionalPerson <- survey
         return (person : additionalPerson)
-      else 
+      else do
+        putStrLn "The survey is complete."
         return [person]
 
