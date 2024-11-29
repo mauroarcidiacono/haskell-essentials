@@ -158,4 +158,65 @@ This is about \emph{THE} normal form: if one exists, it is unique.
 M \twoheadrightarrow_\beta^* P \quad \text{and} \quad N \xrightarrow{\beta^*} P
 \]
 
+\section*{Fixed Points in Lambda Calculus}
+
+The Church numerals are a representation of natural numbers in the lambda calculus. They are defined as follows:
+\[
+\begin{aligned}
+    0 &\triangleq \lambda f.\lambda x.x \\
+    1 &\triangleq \lambda f.\lambda x.f(x) \\
+    2 &\triangleq \lambda f.\lambda x.f(f(x)) \\
+    3 &\triangleq \lambda f.\lambda x.f(f(f(x))) \\
+    &\vdots
+\end{aligned}
+\]
+The following arithmetic functions operate correctly with Church numerals:
+\[
+\begin{aligned}
+    \text{succ} &\triangleq \lambda n.\lambda f.\lambda x.f(nfx) \quad \text{(successor)} \\
+    \text{add} &\triangleq \lambda m.\lambda n.\lambda f.\lambda x.mf(nfx) \quad \text{(addition)} \\
+    \text{mult} &\triangleq \lambda m.\lambda n.\lambda f.\lambda x.m(nf)x \quad \text{(multiplication)} \\
+    \text{exp} &\triangleq \lambda m.\lambda n.\lambda f.\lambda x.(nm)fx \quad \text{(exponentiation)}
+\end{aligned}
+\]
+A \textbf{fixed point} of a function $f: A \to A$ is an element $x \in A$ such that:
+\[
+f(x) = x
+\]
+
+Let us explore this definition by applying it to three functions on the natural numbers:
+\[
+\begin{aligned}
+    f_1(n) &= n^2, \\
+    f_2(n) &= n + 1, \\
+    f_3(n) &= n.
+\end{aligned}
+\]
+
+For $f_1$, the fixed points are $0$ and $1$, since $0^2 = 0$ and $1^2 = 1$. On the other hand, $f_2$ has no fixed points because no natural number satisfies $n + 1 = n$. Finally, for $f_3$, every natural number is a fixed point. This demonstrates that functions over the natural numbers can have zero, some, or all natural numbers as fixed points.
+
+We can extend the concept of fixed points to lambda terms. A \textbf{fixed point} of a $\lambda$-term $F$ is a $\lambda$-term $X$ such that:
+\[
+FX =_\beta X.
+\]
+
+Interestingly, unlike functions on natural numbers, \textbf{every lambda term has at least one fixed point}. This is shown using a special $\lambda$-term called the \textbf{Y-combinator}, which generates fixed points. Recall that a combinator is a $\lambda$-term with no free variables.
+
+The Y-combinator is defined as:
+\[
+Y \triangleq \lambda f.(\lambda x.f(xx))(\lambda x.f(xx)).
+\]
+This combinator, discovered by Curry, leads to an interesting reduction when applied to a lambda term $F$:
+\[
+YF \to_\beta (\lambda x.F(xx))(\lambda x.F(xx)) \to_\beta F((\lambda x.F(xx))(\lambda x.F(xx))).
+\]
+
+We also observe:
+\[
+F(YF) \to_\beta F((\lambda x.F(xx))(\lambda x.F(xx))).
+\]
+
+From this, we see that $YF =_\beta F(YF)$, meaning $YF$ is a fixed point of $F$. This works for any lambda term $F$, showing that the Y-combinator is a general method for finding fixed points in the lambda calculus.
+
+
 \end{document}
